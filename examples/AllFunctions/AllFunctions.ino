@@ -30,20 +30,20 @@
 // #define TINY_GSM_MODEM_A7
 // #define TINY_GSM_MODEM_M590
 // #define TINY_GSM_MODEM_MC60
-#define TINY_GSM_MODEM_M66
+// #define TINY_GSM_MODEM_M66
 // #define TINY_GSM_MODEM_MC60E
 // #define TINY_GSM_MODEM_ESP8266
 // #define TINY_GSM_MODEM_ESP32
 // #define TINY_GSM_MODEM_XBEE
 // #define TINY_GSM_MODEM_SEQUANS_MONARCH
-// #define TINY_GSM_MODEM_EC200
+ #define TINY_GSM_MODEM_EC200
 
 // Set serial for debug console (to the Serial Monitor, default speed 115200)
 #define SerialMon Serial
 
 // Set serial for AT commands (to the module)
 // Use Hardware Serial on Mega, Leonardo, Micro
-#define __AVR_ATmega328P__
+// #define __AVR_ATmega328P__
 
 #ifndef __AVR_ATmega328P__
 #define SerialAT Serial1
@@ -79,9 +79,9 @@
  */
 #define TINY_GSM_TEST_GPRS false
 #define TINY_GSM_TEST_WIFI false
-#define TINY_GSM_TEST_TCP false
+#define TINY_GSM_TEST_TCP true
 #define TINY_GSM_TEST_SSL false
-#define TINY_GSM_TEST_CALL true
+#define TINY_GSM_TEST_CALL false
 #define TINY_GSM_TEST_SMS false
 #define TINY_GSM_TEST_USSD false
 #define TINY_GSM_TEST_BATTERY false
@@ -90,6 +90,7 @@
 #define TINY_GSM_TEST_GPS false
 #define TINY_GSM_TEST_NTP false
 #define TINY_GSM_TEST_TIME false
+#define TINYGSM_TEST_BLUTHOOT false
 // disconnect and power down modem after tests
 #define TINY_GSM_POWERDOWN false
 
@@ -103,7 +104,7 @@
  #define CALL_TARGET ""
 
 // Your GPRS credentials, if any
-const char apn[] = "";
+const char apn[] = "MCINET";
 // const char apn[] = "ibasis.iot";
 const char gprsUser[] = "";
 const char gprsPass[] = "";
@@ -113,7 +114,12 @@ const char wifiSSID[] = "YourSSID";
 const char wifiPass[] = "YourWiFiPass";
 
 // Server details to test TCP/SSL
-const char server[]   = "http://webhook.site/";
+
+const char httpRequest[] =
+    "GET / HTTP/1.1\r\n"
+    "Host: vsh.pp.ua\r\n"
+    "Connection: close\r\n\r\n";
+const char server[]   = "vsh.pp.ua";
 const char resource[] = "/TinyGSM/logo.txt";
 
 
@@ -266,6 +272,24 @@ void loop() {
   String ussd_phone_num = modem.sendUSSD("*121*10#");
   DBG("Phone number (USSD):", ussd_phone_num);
 #endif
+
+
+#if TINYGSM_TEST_BLUTHOOT
+
+DBG("BT Enaleing...");
+  if (modem.enableBluetooth()) {
+    DBG("Bluetooth enabled");
+  }
+DBG("BT Visibility");
+  if(modem.setBluetoothVisibility(true)) {
+    DBG("BT is visibale");
+  }
+  
+  DBG("BT naming...");
+  if (modem.setBluetoothHostName("TinyGsmBT")) {
+    DBG("Host name set");
+  }
+#endif //Bluthoot
 
 
 

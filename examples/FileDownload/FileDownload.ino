@@ -34,8 +34,9 @@
 // #define TINY_GSM_MODEM_A7
 // #define TINY_GSM_MODEM_M590
 // #define TINY_GSM_MODEM_MC60
-//#define TINY_GSM_MODEM_M66
+// #define TINY_GSM_MODEM_M66
 // #define TINY_GSM_MODEM_MC60E
+// #define TINY_GSM_MODEM_EC200
 // #define TINY_GSM_MODEM_ESP8266
 // #define TINY_GSM_MODEM_ESP32
 // #define TINY_GSM_MODEM_XBEE
