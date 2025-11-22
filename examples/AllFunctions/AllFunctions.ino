@@ -104,7 +104,7 @@
  #define CALL_TARGET ""
 
 // Your GPRS credentials, if any
-const char apn[] = "MCINET";
+const char apn[] = "";
 // const char apn[] = "ibasis.iot";
 const char gprsUser[] = "";
 const char gprsPass[] = "";

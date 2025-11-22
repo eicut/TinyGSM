@@ -99,7 +99,7 @@ typedef TinyGsmM590::GsmClientM590 TinyGsmClient;
 #elif defined(TINY_GSM_MODEM_EC200) || defined(TINY_GSM_MODEM_EC200A)
 #include "TinyGsmClientEC200.h"
 typedef TinyGsmEC200                TinyGsm;
-typedef TinyGs1mEC200::GsmClientEC200 TinyGsmClient;
+typedef TinyGsmEC200::GsmClientEC200 TinyGsmClient;
 
 #elif defined(TINY_GSM_MODEM_MC60) || defined(TINY_GSM_MODEM_MC60E)
 #include "TinyGsmClientMC60.h"
